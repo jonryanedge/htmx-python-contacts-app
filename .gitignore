@@ -1,5 +1,5 @@
 .idea
-.envrc
+.env*
 env
 /venv/
 __pycache__

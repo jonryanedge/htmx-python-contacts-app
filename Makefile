@@ -1,8 +1,5 @@
 # Include variable from .envrc file
-#include .envrc
-
-# Include server ops 
-#include ./server/Makefile
+include .env
 
 ## help: print this help message
 .PHONY: help
@@ -29,4 +26,23 @@ run:
 install:
 	. venv/bin/activate && pip install -r requirements.txt
 
+## host/ssh: ssh to host server
+.PHONY: host/ssh
+host/ssh:
+	ssh -i ${USERKEY} root@${HOST}
+
+## host/svc: copy service file to host server
+.PHONY: host/svc
+host/svc:
+	scp -i ${USERKEY} ./${SVC}.service root@${HOST}:/etc/systemd/system/${SVC}.service
+
+## host/start: start service
+.PHONY: host/start
+host/start:
+	ssh -i ${USERKEY} root@${HOST} 'systemctl start ${SVC}.service'
+
+## host/stop: stop service
+.PHONY: host/stop
+host/stop:
+	ssh -i ${USERKEY} root@${HOST} 'systemctl stop ${SVC}.service'
 
