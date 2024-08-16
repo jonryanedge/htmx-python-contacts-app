@@ -14,17 +14,17 @@ confirm:
 ## prep: prepare environment
 .PHONY: prep
 prep:
-	python3 -m venv venv
+	python3 -m venv .venv
 
 ## run: run the web application in venv
 .PHONY: run
 run:
-	. venv/bin/activate && python app.py
+	. .venv/bin/activate && python app.py
 
 ## install: activate virtual environment & install reqs
 .PHONY: install
 install:
-	. venv/bin/activate && pip install -r requirements.txt
+	. .venv/bin/activate && pip install -r requirements.txt && pip install waitress
 
 ## host/ssh: ssh to host server
 .PHONY: host/ssh
