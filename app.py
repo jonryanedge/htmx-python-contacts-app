@@ -1,6 +1,7 @@
 from flask import (
     Flask, redirect, render_template, request, flash, jsonify, send_file
 )
+from waitress import serve
 from contacts_model import Contact, Archiver
 import time
 
@@ -178,4 +179,5 @@ def json_contacts_delete(contact_id=0):
 
 
 if __name__ == "__main__":
-    app.run()
+    #app.run()
+    serve(app, host="127.0.0.1", port=5000)
