@@ -180,4 +180,4 @@ def json_contacts_delete(contact_id=0):
 
 if __name__ == "__main__":
     #app.run()
-    serve(app, host="127.0.0.1", port=5000)
+    serve(app, host="127.0.0.1", port=5000, threads=8)
